@@ -13,7 +13,7 @@
     :src="imageUrl"
     aspect-ratio="1"
     :alt="imageUrl">
-    <v-card-title v-if="label" class="card-header"
+    <v-card-title v-if="label" class="card-header text-white"
       >{{ label }} <v-icon icon="mdi-map-marker" />
     </v-card-title>
 

@@ -42,6 +42,7 @@
         type="email"
         label="Email"
         variant="underlined"
+        autocomplete="current-email"
         v-model="email.value.value"
         :error-messages="email.errorMessage.value" />
 
@@ -49,6 +50,7 @@
         type="password"
         label="Password"
         variant="underlined"
+        autocomplete="current-password"
         class="mt-2"
         v-model="password.value.value"
         :error-messages="password.errorMessage.value" />
