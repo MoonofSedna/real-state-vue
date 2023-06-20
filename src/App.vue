@@ -19,11 +19,12 @@
 </script>
 
 <template>
-  <v-layout v-if="!auth.loading">
+  <v-layout>
     <v-navigation-drawer v-model="drawer" temporary class="mb-nav">
       <v-list nav>
         <v-list-item
-          v-for="item in auth.isAuth ? privNavigation : pubNavigation"
+          v-for="(item, index) in auth.isAuth ? privNavigation : pubNavigation"
+          :key="item.title + index"
           :prepend-icon="item.icon"
           :title="item.title"
           :to="{ name: item.value }" />
@@ -49,7 +50,10 @@
         </v-btn>
         <div class="dk-nav">
           <v-btn
-            v-for="item in auth.isAuth ? privNavigation : pubNavigation"
+            v-for="(item, index) in auth.isAuth
+              ? privNavigation
+              : pubNavigation"
+            :key="item.title + index"
             class="ml-2"
             :to="{ name: item.value }"
             :prepend-icon="item.icon">
@@ -90,6 +94,7 @@
 <style>
   * {
     box-sizing: border-box;
+    font-display: swap;
   }
   body {
     background-color: #f9f9f9;

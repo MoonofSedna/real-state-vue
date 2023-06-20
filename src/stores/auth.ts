@@ -1,4 +1,4 @@
-import { ref, computed, onMounted } from "vue";
+import { ref, computed } from "vue";
 import { useRouter } from "vue-router";
 import { defineStore } from "pinia";
 import { useFirebaseAuth } from "vuefire";
@@ -13,7 +13,6 @@ import type { FirebaseError } from "@firebase/util";
 export const useAuthStore = defineStore("auth", () => {
   const auth = useFirebaseAuth() as Auth;
   const authUser = ref<User | null>(null);
-  const loading = ref(true);
 
   const router = useRouter();
 
@@ -25,12 +24,17 @@ export const useAuthStore = defineStore("auth", () => {
     "auth/email-already-in-use": "Email already in use",
   };
 
-  onMounted(async () => {
-    onAuthStateChanged(auth, user => {
-      authUser.value = user;
-      loading.value = false;
+  const auntheticateUser = async () => {
+    return await new Promise((resolve, reject) => {
+      onAuthStateChanged(auth, user => {
+        if (!user) {
+          reject();
+        }
+        authUser.value = user;
+        resolve(user);
+      });
     });
-  });
+  };
 
   const login = async (email: string, password: string) => {
     try {
@@ -62,6 +66,6 @@ export const useAuthStore = defineStore("auth", () => {
     userId,
     hasError,
     errorMsg,
-    loading,
+    auntheticateUser,
   };
 });

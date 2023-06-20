@@ -1,6 +1,6 @@
-import { useFirebaseAuth } from "vuefire";
 import { createRouter, createWebHistory } from "vue-router";
-import { onAuthStateChanged, type Auth } from "@firebase/auth";
+// stores
+import { useAuthStore } from "@/stores/auth";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -52,39 +52,29 @@ const router = createRouter({
 });
 
 router.beforeEach(async (to, from, next) => {
+  const auth = useAuthStore();
   const requiresAuth = to.matched.some(url => url.meta.requiresAuth);
-  if (requiresAuth) {
-    try {
-      await auntheticateUser();
-      next();
-    } catch (e) {
-      next({ name: "login" });
-    }
-  } else {
-    if (to.matched.some(url => url.name === "login" || url.name === "signup")) {
-      try {
-        await auntheticateUser();
-        next({ name: "home" });
-      } catch (e) {
+
+  await auth
+    .auntheticateUser()
+    .then(() => {
+      if (requiresAuth) {
+        next();
+      } else {
+        if (to.matched.some(url => url.name === "login")) {
+          next({ name: "home" });
+        } else {
+          next();
+        }
+      }
+    })
+    .catch(() => {
+      if (requiresAuth) {
+        next({ name: "login" });
+      } else {
         next();
       }
-    } else {
-      next();
-    }
-  }
-});
-
-const auntheticateUser = async () => {
-  const auth = useFirebaseAuth() as Auth;
-  return new Promise((resolve, reject) => {
-    const unsubscribe = onAuthStateChanged(auth, user => {
-      unsubscribe();
-      if (!user) {
-        reject();
-      }
-      resolve(user);
     });
-  });
-};
+});
 
 export default router;

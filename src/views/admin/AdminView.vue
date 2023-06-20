@@ -22,9 +22,8 @@
     useProperty();
 
   onMounted(async () => {
-    if (!auth.userId) return;
     loading.value = true;
-    await getUserProperties(auth.userId);
+    await getUserProperties(auth.userId as string);
     loading.value = false;
   });
 
