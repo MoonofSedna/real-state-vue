@@ -44,7 +44,7 @@
       </template>
 
       <template v-slot:append>
-        <v-btn icon @click="drawer = !drawer" class="mb-nav">
+        <v-btn icon @click="drawer = !drawer" class="mb-nav" aria-label="menu">
           <v-icon>mdi-menu</v-icon>
         </v-btn>
         <div class="dk-nav">

@@ -35,10 +35,7 @@
           <div>
             <span>Beds</span>
             <div>
-              <v-icon
-                size="x-large"
-                icon="mdi-bed-king-outline"
-                color="primary" />
+              <v-icon size="x-large" icon="mdi-bed-king-outline" color="gray" />
               {{ property.bedroom }}
             </div>
           </div>
@@ -47,10 +44,7 @@
             <span>Baths</span>
 
             <div>
-              <v-icon
-                size="x-large"
-                icon="mdi-bathtub-outline"
-                color="primary" />
+              <v-icon size="x-large" icon="mdi-bathtub-outline" color="gray" />
               {{ property.bathroom }}
             </div>
           </div>
@@ -59,7 +53,7 @@
             <span>Parking</span>
 
             <div>
-              <v-icon size="x-large" icon="mdi-garage" color="primary" />
+              <v-icon size="x-large" icon="mdi-garage" color="gray" />
               {{ property.parking }}
             </div>
           </div>
@@ -68,7 +62,7 @@
             <span>Pool</span>
 
             <div>
-              <v-icon size="x-large" icon="mdi-pool" color="primary" />
+              <v-icon size="x-large" icon="mdi-pool" color="gray" />
               {{ pool }}
             </div>
           </div>
@@ -85,16 +79,17 @@
 
       <v-card-actions class="d-flex justify-space-between px-4">
         <div>
-          <v-card-subtitle class="py-2 px-0">
-            <span class="me-2 font-weight-bold bg-gray rounded-pill py-1 px-2"
+          <v-card-title class="py-2 px-0">
+            <span
+              class="me-2 text-body-1 font-weight-bold bg-gray text-white rounded-pill py-1 px-2"
               >For {{ property.isFor }}
             </span>
 
-            <p class="my-2 text-subtitle-1 text-black font-weight-bold">
+            <p class="my-2 text-subtitle-1 text-gray font-weight-bold">
               {{ normalizePrice(property.price) }}
               <span v-if="isForRent">/ month</span>
             </p>
-          </v-card-subtitle>
+          </v-card-title>
         </div>
 
         <v-btn
