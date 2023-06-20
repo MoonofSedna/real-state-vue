@@ -19,10 +19,10 @@
 <template>
   <v-col cols="12" md="4" sm="6">
     <v-card class="mx-auto overflow-hidden" elevation="2">
-      <Image
-        :label="property.city"
-        :imageUrl="property.imageUrl"
-        height="250" />
+      <v-card-title class="bg-gray text-white"
+        >{{ property.city }} <v-icon icon="mdi-map-marker" />
+      </v-card-title>
+      <Image :imageUrl="property.imageUrl" height="210" />
 
       <v-card-title class="font-weight-bold pb-2 bg-gray overflow-hidden">{{
         property.title

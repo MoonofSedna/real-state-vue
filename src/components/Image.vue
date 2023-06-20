@@ -13,10 +13,6 @@
     :src="imageUrl"
     aspect-ratio="1"
     :alt="imageUrl">
-    <v-card-title v-if="label" class="card-header text-white"
-      >{{ label }} <v-icon icon="mdi-map-marker" />
-    </v-card-title>
-
     <template v-slot:placeholder>
       <div class="d-flex align-center justify-center fill-height">
         <v-progress-circular color="grey-lighten-4" indeterminate />

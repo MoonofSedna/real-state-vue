@@ -112,14 +112,14 @@
               property.title
             }}</v-card-title>
 
-            <v-card-subtitle class="px-2 py-1 rounded-pill bg-gray d-inline">
+            <v-card-text
+              class="px-2 py-1 rounded-pill bg-gray d-inline text-body-1 font-weight-bold">
               For {{ property.isFor }}
-            </v-card-subtitle>
+            </v-card-text>
 
-            <v-card-subtitle
-              class="pt-4 px-0 text-h6 font-weight-bold text-gray">
+            <v-card-text class="pt-4 px-0 text-h6 font-weight-bold text-gray">
               {{ normalizePrice(property.price) }}
-            </v-card-subtitle>
+            </v-card-text>
 
             <v-card-text class="px-0 text-body-1 text-gray">
               <p>{{ property.description }}</p>
